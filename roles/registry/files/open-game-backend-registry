@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# http://www.jcgonzalez.com/linux-java-service-wrapper-example
+# https://orrsella.com/2014/11/06/initd-and-start-scripts-for-scala-java-server-apps/
+
+SERVICE_NAME=open-game-backend-registry
+PATH_TO_JAR=/usr/local/bin/open-game-backend/registry.jar
+PATH_TO_PID=/var/run/open-game-backend-registry
+PATH_TO_LOG=/var/log/open-game-backend-registry
+
+case $1 in
+    start)
+        echo "Starting $SERVICE_NAME ..."
+        if [ ! -f $PATH_TO_PID ]; then
+            nohup java -jar $PATH_TO_JAR >> $PATH_TO_LOG 2>&1&
+            echo $! > $PATH_TO_PID
+            echo "$SERVICE_NAME started."
+        else
+            echo "$SERVICE_NAME is already running."
+        fi
+    ;;
+    stop)
+        if [ -f $PATH_TO_PID ]; then
+            PID=$(cat $PATH_TO_PID);
+            echo "Stopping $SERVICE_NAME ..."
+            kill $PID;
+            echo "$SERVICE_NAME stopped."
+            rm $PATH_TO_PID
+        else
+            echo "$SERVICE_NAME is not running."
+        fi
+    ;;
+    restart)
+        if [ -f $PATH_TO_PID ]; then
+            PID=$(cat $PATH_TO_PID);
+            echo "Stopping $SERVICE_NAME ..."
+            kill $PID;
+            echo "$SERVICE_NAME stopped.";
+            rm $PATH_TO_PID
+            echo "Starting $SERVICE_NAME ..."
+            nohup java -jar $PATH_TO_JAR >> /var/log/open-game-backend-registry 2>&1&
+            echo $! > $PATH_TO_PID
+            echo "$SERVICE_NAME started."
+        else
+            echo "$SERVICE_NAME is not running."
+        fi
+    ;;
+    status)
+        if [ -f $PATH_TO_PID ]; then
+            PID=`cat $PATH_TO_PID`
+            if [ -z "`ps axf | grep -w ${PID} | grep -v grep`" ]; then
+                echo "$SERVICE_NAME is not running. (Process is dead, but PID file exists!)"
+                exit 1
+            else
+                echo "Running [$PID]"
+                exit 0
+            fi
+        else
+            echo "$SERVICE_NAME is not running."
+            exit 3
+        fi
+    ;;
+esac

@@ -1,0 +1,5 @@
+---
+system_user_registry: "{{ vault_system_user_registry }}"
+
+github_user: "{{ vault_github_user }}"
+github_token: "{{ vault_github_token }}"

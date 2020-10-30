@@ -1,0 +1,9 @@
+---
+- name: Install Open Game Backend Registry
+  hosts: registry
+  remote_user: "{{ system_user_registry }}"
+  vars_files:
+    - group_vars/vars
+    - group_vars/vault
+  roles:
+    - role: registry

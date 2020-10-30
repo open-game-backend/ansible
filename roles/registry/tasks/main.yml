@@ -1,0 +1,53 @@
+---
+  # Required for downloading the package.
+  - name: Install Maven
+    become: yes
+    apt:
+      name: maven
+      state: present
+
+  # Required for maven_artifact.
+  - name: Install PIP
+    become: yes
+    apt:
+      name: python-pip
+      state: present
+
+  # Required for maven_artifact.
+  - name: Install lxml
+    become: yes
+    pip:
+      name: lxml
+      state: present
+
+  - name: Create application directory if it does not exist
+    become: yes
+    file:
+      path: /usr/local/bin/open-game-backend
+      state: directory
+      mode: '0755'
+
+  - name: Download package
+    become: yes
+    maven_artifact:
+      group_id: de.opengamebackend
+      artifact_id: registry
+      repository_url: https://maven.pkg.github.com/open-game-backend/registry
+      username: "{{ github_user }}"
+      password: "{{ github_token }}"
+      dest: /usr/local/bin/open-game-backend/registry.jar
+      mode: '0755'
+      state: present
+
+  - name: Copy service file
+    become: yes
+    copy:
+      src: open-game-backend-registry
+      dest: /etc/init.d/open-game-backend-registry
+      mode: '0755'
+
+  - name: Start service, if not started
+    become: yes
+    service:
+      name: open-game-backend-registry
+      state: started
