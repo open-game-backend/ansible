@@ -7,6 +7,11 @@
 1. Copy ```hosts.example``` to ```hosts``` and edit the ```hosts``` inventory file to include the names or URLs of the servers you want to deploy.
 1. Create a [GitHub personal access token](https://github.com/settings/tokens) with the ```read:packages``` scope for downloading the Open Game Backend packages.
 1. Copy ```group_vars/vault.example``` to ```group_vars/vault``` and edit the ```group_vars/vault``` file setting all necessary variables. Don't forget to [encrypt your vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-existing-files).
+1. Open Game Backend uses third-party rules in its playbook. You might need to add the following Ansible repositories:
+    1. ```ansible-galaxy collection install community.general```
+    1. ```ansible-galaxy install elastic.elasticsearch,7.9.3``` (see https://github.com/elastic/ansible-elasticsearch#usage)
+    1. ```ansible-galaxy install elastic.beats,7.9.3``` (see https://github.com/elastic/ansible-beats#usage)
+    1. ```ansible-galaxy install fedelemantuano.kibana```(see https://github.com/fedelemantuano/ansible-kibana#usage)
 
 # Deployment
 
