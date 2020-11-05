@@ -1,4 +1,6 @@
 ---
 - import_playbook: registry.yml
 - import_playbook: gateway.yml
+- import_playbook: auth.yml
+
 - import_playbook: elk.yml
