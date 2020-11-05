@@ -1,0 +1,11 @@
+---
+- name: Install Open Game Backend Gateway
+  hosts: gateway
+  remote_user: "{{ system_user_gateway }}"
+  vars_files:
+    - group_vars/vars
+    - group_vars/vault
+  roles:
+    - role: deploy_spring_boot_service
+      vars:
+        service_name: gateway

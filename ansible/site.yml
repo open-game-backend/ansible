@@ -10,6 +10,8 @@
       vars:
         service_name: registry
 
+- import_playbook: gateway.yml
+
 - name: Install Elasticsearch
   hosts: elk
   roles:
