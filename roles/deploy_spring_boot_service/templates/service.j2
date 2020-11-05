@@ -3,10 +3,10 @@
 # http://www.jcgonzalez.com/linux-java-service-wrapper-example
 # https://orrsella.com/2014/11/06/initd-and-start-scripts-for-scala-java-server-apps/
 
-SERVICE_NAME=open-game-backend-registry
-PATH_TO_JAR=/usr/local/bin/open-game-backend/registry.jar
-PATH_TO_PID=/var/run/open-game-backend-registry
-PATH_TO_LOG=/var/log/open-game-backend-registry.out
+SERVICE_NAME=open-game-backend-{{ service_name }}
+PATH_TO_JAR=/usr/local/bin/open-game-backend/{{ service_name }}.jar
+PATH_TO_PID=/var/run/open-game-backend-{{ service_name }}
+PATH_TO_LOG=/var/log/open-game-backend-{{ service_name }}.out
 
 case $1 in
     start)
@@ -38,7 +38,7 @@ case $1 in
             echo "$SERVICE_NAME stopped.";
             rm $PATH_TO_PID
             echo "Starting $SERVICE_NAME ..."
-            nohup java -jar $PATH_TO_JAR >> /var/log/open-game-backend-registry 2>&1&
+            nohup java -DLOG_PATH=/var/log -jar $PATH_TO_JAR  >> $PATH_TO_LOG 2>&1&
             echo $! > $PATH_TO_PID
             echo "$SERVICE_NAME started."
         else

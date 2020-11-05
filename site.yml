@@ -6,7 +6,9 @@
     - group_vars/vars
     - group_vars/vault
   roles:
-    - role: registry
+    - role: deploy_spring_boot_service
+      vars:
+        service_name: registry
 
 - name: Install Elasticsearch
   hosts: elk
