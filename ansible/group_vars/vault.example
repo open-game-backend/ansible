@@ -2,6 +2,7 @@
 vault_system_user_registry:
 vault_system_user_gateway:
 vault_system_user_auth:
+vault_system_user_matchmaking:
 
 vault_github_user:
 vault_github_token:

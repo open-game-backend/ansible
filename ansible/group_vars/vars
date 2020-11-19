@@ -2,6 +2,7 @@
 system_user_registry: "{{ vault_system_user_registry }}"
 system_user_gateway: "{{ vault_system_user_gateway }}"
 system_user_auth: "{{ vault_system_user_auth }}"
+system_user_matchmaking: "{{ vault_system_user_matchmaking }}"
 
 github_user: "{{ vault_github_user }}"
 github_token: "{{ vault_github_token }}"
