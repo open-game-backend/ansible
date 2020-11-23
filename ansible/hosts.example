@@ -10,5 +10,8 @@
 [matchmaking]
 127.0.0.1   ansible_connection=local
 
+[admin]
+127.0.0.1   ansible_connection=local
+
 [elk]
 127.0.0.1   ansible_connection=local

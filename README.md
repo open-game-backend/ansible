@@ -9,6 +9,7 @@
 1. Copy ```group_vars/vault.example``` to ```group_vars/vault``` and edit the ```group_vars/vault``` file setting all necessary variables. Don't forget to [encrypt your vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-existing-files).
 1. Open Game Backend uses third-party rules in its playbook. You might need to add the following Ansible repositories:
     1. ```ansible-galaxy collection install community.general```
+    1. ```ansible-galaxy install nginxinc.nginx``` (see https://github.com/nginxinc/ansible-role-nginx#installation)
     1. ```ansible-galaxy install elastic.elasticsearch,7.9.3``` (see https://github.com/elastic/ansible-elasticsearch#usage)
     1. ```ansible-galaxy install elastic.beats,7.9.3``` (see https://github.com/elastic/ansible-beats#usage)
     1. ```ansible-galaxy install fedelemantuano.kibana```(see https://github.com/fedelemantuano/ansible-kibana#usage)

@@ -1,0 +1,11 @@
+---
+- name: Install Open Game Backend Admin
+  hosts: admin
+  remote_user: "{{ system_user_admin }}"
+  vars_files:
+    - group_vars/vars
+    - group_vars/vault
+  roles:
+    - role: deploy_vue_application
+      vars:
+        package_name: admin

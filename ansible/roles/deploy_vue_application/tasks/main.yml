@@ -1,0 +1,63 @@
+---
+  - name: Install nginx
+    become: yes
+    apt:
+      name: nginx
+      state: present
+
+  # Prepare to serve Vue application as static content
+  # https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/
+  # https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/
+  - name: Copy nginx configuration file
+    become: yes
+    template:
+      src: nginx.conf
+      dest: /etc/nginx/nginx.conf
+      mode: '0755'
+
+  # Required for downloading the package.
+  - name: Install npm
+    become: yes
+    apt:
+      name: npm
+      state: present
+
+  # Authenticate with GitHub Packages
+  # https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages
+  - name: Run command
+    become: yes
+    command: npm config set //npm.pkg.github.com/:_authToken={{ vault_github_token }}
+
+  - name: Create application directory if it does not exist
+    become: yes
+    file:
+      path: /usr/local/bin/open-game-backend
+      state: directory
+      mode: '0755'
+
+  - name: Install node.js package
+    become: yes
+    npm:
+      name: '@open-game-backend/{{ package_name }}@latest'
+      registry: 'https://npm.pkg.github.com/open-game-backend'
+      path: /usr/local/bin/open-game-backend/{{ package_name }}
+      state: present
+
+  - name: Copy web application files on the remote machine
+    become: yes
+    copy:
+      src: /usr/local/bin/open-game-backend/admin/node_modules/@open-game-backend/admin/dist/
+      dest: /srv/www/
+      remote_src: yes
+
+  - name: Start service
+    become: yes
+    service:
+      name: nginx
+      state: started
+
+  # Reload nginx configuration
+  # https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/
+  - name: Run command
+    become: yes
+    command: nginx -s reload
