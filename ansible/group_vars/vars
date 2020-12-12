@@ -7,3 +7,12 @@ system_user_admin: "{{ vault_system_user_admin }}"
 
 github_user: "{{ vault_github_user }}"
 github_token: "{{ vault_github_token }}"
+github_client_id: "{{ vault_github_client_id }}"
+github_client_secret: "{{ vault_github_client_secret }}"
+
+enable_h2_console: true
+
+gateway_host: localhost
+gateway_url: http://localhost:8761/eureka/
+
+admin_url: http://localhost:8080

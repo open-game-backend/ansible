@@ -54,6 +54,13 @@
       state: present
       verify_checksum: always
 
+  - name: Copy configuration file
+    become: yes
+    template:
+      src: templates/{{ service_name }}.application.yml
+      dest: /usr/local/bin/open-game-backend/{{ service_name }}.application.yml
+      mode: '0555'
+
   - name: Start service
     become: yes
     service:

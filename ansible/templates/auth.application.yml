@@ -1,0 +1,20 @@
+spring:
+  h2:
+    console:
+      enabled: {{ enable_h2_console }}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: {{ gateway_url }}
+  instance:
+    hostname: {{ gateway_host }}
+
+de:
+  opengamebackend:
+    auth:
+      provider:
+        github:
+          redirectUri: {{ admin_url }}/login
+          clientId: {{ github_client_id }}
+          clientSecret: {{ github_client_secret }}

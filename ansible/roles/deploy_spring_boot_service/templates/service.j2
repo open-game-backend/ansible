@@ -5,6 +5,7 @@
 
 SERVICE_NAME=open-game-backend-{{ service_name }}
 PATH_TO_JAR=/usr/local/bin/open-game-backend/{{ service_name }}.jar
+PATH_TO_CONFIG=/usr/local/bin/open-game-backend/{{ service_name }}.application.yml
 PATH_TO_PID=/var/run/open-game-backend-{{ service_name }}
 PATH_TO_LOG=/var/log/open-game-backend-{{ service_name }}.out
 
@@ -12,7 +13,7 @@ case $1 in
     start)
         echo "Starting $SERVICE_NAME ..."
         if [ ! -f $PATH_TO_PID ]; then
-            nohup java -DLOG_PATH=/var/log -jar $PATH_TO_JAR  >> $PATH_TO_LOG 2>&1&
+            nohup java -DLOG_PATH=/var/log -jar $PATH_TO_JAR --spring.config.additional-location=file://$PATH_TO_CONFIG >> $PATH_TO_LOG 2>&1&
             echo $! > $PATH_TO_PID
             echo "$SERVICE_NAME started."
         else
