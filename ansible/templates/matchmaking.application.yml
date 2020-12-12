@@ -1,0 +1,11 @@
+spring:
+  h2:
+    console:
+      enabled: {{ enable_h2_console }}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: {{ registry_url }}
+  instance:
+    hostname: {{ registry_host }}
