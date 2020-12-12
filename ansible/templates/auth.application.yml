@@ -6,9 +6,9 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: {{ gateway_url }}
+      defaultZone: {{ registry_url }}
   instance:
-    hostname: {{ gateway_host }}
+    hostname: {{ registry_host }}
 
 de:
   opengamebackend:

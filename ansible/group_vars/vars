@@ -12,7 +12,7 @@ github_client_secret: "{{ vault_github_client_secret }}"
 
 enable_h2_console: true
 
-gateway_host: localhost
-gateway_url: http://localhost:8761/eureka/
+registry_host: localhost
+registry_url: http://localhost:8761/eureka/
 
 admin_url: http://localhost:8080
