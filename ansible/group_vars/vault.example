@@ -9,3 +9,5 @@ vault_github_user:
 vault_github_token:
 vault_github_client_id:
 vault_github_client_secret:
+
+vault_gateway_jwt_secret:
