@@ -46,9 +46,16 @@
   - name: Copy web application files on the remote machine
     become: yes
     copy:
-      src: /usr/local/bin/open-game-backend/admin/node_modules/@open-game-backend/admin/dist/
+      src: /usr/local/bin/open-game-backend/{{ package_name }}/node_modules/@open-game-backend/{{ package_name }}/dist/
       dest: /srv/www/
       remote_src: yes
+
+  - name: Copy configuration file
+    become: yes
+    template:
+      src: templates/{{ package_name }}.config.json
+      dest: /srv/www/config.json
+      mode: '0555'
 
   - name: Start service
     become: yes
