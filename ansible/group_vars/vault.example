@@ -2,7 +2,11 @@
 vault_system_user_registry:
 vault_system_user_gateway:
 vault_system_user_auth:
+vault_db_user_auth:
+vault_db_pass_auth:
 vault_system_user_matchmaking:
+vault_db_user_matchmaking:
+vault_db_pass_matchmaking:
 vault_system_user_admin:
 
 vault_github_user:

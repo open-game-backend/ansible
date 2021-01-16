@@ -1,0 +1,56 @@
+---
+  - name: Install MariaDB Server
+    become: yes
+    apt:
+      name: mariadb-server
+      state: present
+
+  - name: Start service
+    become: yes
+    service:
+      name: mysql
+      state: started
+
+  # Secure database based on https://github.com/MariaDB/server/blob/5.5/scripts/mysql_secure_installation.sh
+  - name: Remove anonymous users
+    become: yes
+    command: mysql
+    args:
+      stdin: "DELETE FROM mysql.user WHERE User='';"
+
+  - name: Remove remote root
+    become: yes
+    command: mysql
+    args:
+      stdin: "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
+
+  - name: Drop test database
+    become: yes
+    command: mysql
+    args:
+      stdin: "DROP DATABASE IF EXISTS test;"
+
+  - name: Remove privileges on test database
+    become: yes
+    command: mysql
+    args:
+      stdin: "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';"
+
+  # Setup for Open Game Backend
+  - name: Create user
+    become: yes
+    command: mysql
+    args:
+      stdin: "GRANT ALL ON *.* TO '{{ vault_db_user }}'@'localhost' IDENTIFIED BY '{{ vault_db_pass }}' WITH GRANT OPTION;"
+
+  - name: Reload privilege tables
+    become: yes
+    command: mysql
+    args:
+      stdin: "FLUSH PRIVILEGES;"
+
+  - name: Create Open Game Backend database
+    become: yes
+    command: mysql
+    args:
+      stdin: "CREATE DATABASE IF NOT EXISTS open_game_backend;"

@@ -1,7 +1,8 @@
 spring:
-  h2:
-    console:
-      enabled: {{ enable_h2_console }}
+  datasource:
+    url: jdbc:mariadb://localhost/open_game_backend
+    username: {{ vault_db_user_matchmaking }}
+    password: {{ vault_db_pass_matchmaking }}
 
 eureka:
   client:
