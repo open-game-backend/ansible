@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost/open_game_backend
+    username: {{ db_user_collection }}
+    password: {{ db_pass_collection }}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: {{ registry_url }}
+  instance:
+    hostname: {{ registry_host }}

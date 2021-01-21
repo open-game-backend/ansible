@@ -3,6 +3,7 @@
 - import_playbook: gateway.yml
 - import_playbook: auth.yml
 - import_playbook: matchmaking.yml
+- import_playbook: collection.yml
 - import_playbook: admin.yml
 
 - import_playbook: elk.yml

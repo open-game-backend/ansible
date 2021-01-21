@@ -7,6 +7,9 @@ vault_db_pass_auth:
 vault_system_user_matchmaking:
 vault_db_user_matchmaking:
 vault_db_pass_matchmaking:
+vault_system_user_collection:
+vault_db_user_collection:
+vault_db_pass_collection:
 vault_system_user_admin:
 
 vault_github_user:
