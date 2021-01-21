@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mariadb://localhost/open_game_backend
-    username: {{ vault_db_user_matchmaking }}
-    password: {{ vault_db_pass_matchmaking }}
+    username: {{ db_user_matchmaking }}
+    password: {{ db_pass_matchmaking }}
 
 eureka:
   client:

@@ -11,5 +11,5 @@
         service_name: matchmaking
     - role: deploy_mariadb
       vars:
-        vault_db_user: "{{ vault_db_user_matchmaking }}"
-        vault_db_pass: "{{ vault_db_pass_matchmaking }}"
+        db_user: "{{ db_user_matchmaking }}"
+        db_pass: "{{ db_pass_matchmaking }}"

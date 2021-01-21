@@ -41,7 +41,7 @@
     become: yes
     command: mysql
     args:
-      stdin: "GRANT ALL ON *.* TO '{{ vault_db_user }}'@'localhost' IDENTIFIED BY '{{ vault_db_pass }}' WITH GRANT OPTION;"
+      stdin: "GRANT ALL ON *.* TO '{{ db_user }}'@'localhost' IDENTIFIED BY '{{ db_pass }}' WITH GRANT OPTION;"
 
   - name: Reload privilege tables
     become: yes
