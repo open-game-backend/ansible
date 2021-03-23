@@ -1,0 +1,15 @@
+---
+- name: Install Open Game Backend Quests
+  hosts: quests
+  remote_user: "{{ system_user_quests }}"
+  vars_files:
+    - group_vars/vars
+    - group_vars/vault
+  roles:
+    - role: deploy_spring_boot_service
+      vars:
+        service_name: quests
+    - role: deploy_mariadb
+      vars:
+        db_user: "{{ db_user_quests }}"
+        db_pass: "{{ db_pass_quests }}"

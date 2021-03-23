@@ -13,6 +13,9 @@
 [collection]
 127.0.0.1   ansible_connection=local
 
+[quests]
+127.0.0.1   ansible_connection=local
+
 [admin]
 127.0.0.1   ansible_connection=local
 
