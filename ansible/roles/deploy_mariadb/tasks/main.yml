@@ -1,14 +1,18 @@
 ---
+  - name: Set up Amazon Linux yum repository
+    become: yes
+    command: amazon-linux-extras enable lamp-mariadb10.2-php7.2=latest
+
   - name: Install MariaDB Server
     become: yes
     yum:
       name: mariadb-server
-      state: present
+      state: latest
 
   - name: Start service
     become: yes
     service:
-      name: mysql
+      name: mariadb
       state: started
 
   # Secure database based on https://github.com/MariaDB/server/blob/5.5/scripts/mysql_secure_installation.sh
