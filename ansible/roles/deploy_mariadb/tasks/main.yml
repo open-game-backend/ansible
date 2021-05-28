@@ -14,6 +14,7 @@
     service:
       name: mariadb
       state: started
+      enabled: yes
 
   # Secure database based on https://github.com/MariaDB/server/blob/5.5/scripts/mysql_secure_installation.sh
   - name: Remove anonymous users

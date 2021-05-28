@@ -61,8 +61,9 @@
       dest: /usr/local/bin/open-game-backend/{{ service_name }}.application.yml
       mode: '0555'
 
-  - name: Start service
+  - name: Start service immediately and after boot
     become: yes
     service:
       name: open-game-backend-{{ service_name }}
       state: started
+      enabled: yes
