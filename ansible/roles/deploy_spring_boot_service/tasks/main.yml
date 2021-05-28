@@ -20,11 +20,18 @@
       name: lxml
       state: present
 
-  - name: Copy service file
+  - name: Copy init.d service file
     become: yes
     template:
       src: service.j2
       dest: /etc/init.d/open-game-backend-{{ service_name }}
+      mode: '0755'
+
+  - name: Copy systemd service file
+    become: yes
+    template:
+      src: app.service
+      dest: /etc/systemd/system/open-game-backend-{{ service_name }}.service
       mode: '0755'
 
   - name: Stop service, if started

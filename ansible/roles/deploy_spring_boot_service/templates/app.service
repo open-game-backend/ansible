@@ -1,0 +1,10 @@
+[Unit]
+Description=Service file of the Spring Boot application open-game-backend-{{ service_name }}
+
+[Service]
+PIDFile=/var/run/open-game-backend-{{ service_name }}
+ExecStart=/bin/bash /etc/init.d/open-game-backend-{{ service_name }} start
+ExecStop=/bin/bash /etc/init.d/open-game-backend-{{ service_name }} stop
+
+[Install]
+WantedBy=multi-user.target
