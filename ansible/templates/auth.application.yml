@@ -8,8 +8,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: {{ registry_url }}
-  instance:
-    hostname: {{ registry_host }}
 
 de:
   opengamebackend:

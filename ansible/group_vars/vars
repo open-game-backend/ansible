@@ -22,7 +22,6 @@ github_client_secret: "{{ vault_github_client_secret }}"
 
 enable_h2_console: true
 
-registry_host: localhost
 registry_url: http://localhost:8761/eureka/
 
 gateway_jwt_secret: "{{ vault_gateway_jwt_secret }}"
