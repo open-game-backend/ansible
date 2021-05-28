@@ -16,9 +16,10 @@ vault_db_pass_quests:
 vault_system_user_admin:
 vault_www_user_admin:
 
+vault_registry_url:
+vault_gateway_jwt_secret:
+
 vault_github_user:
 vault_github_token:
 vault_github_client_id:
 vault_github_client_secret:
-
-vault_gateway_jwt_secret:
