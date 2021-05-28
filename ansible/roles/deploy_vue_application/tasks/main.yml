@@ -4,6 +4,7 @@
     yum:
       name: nginx
       state: present
+      update_cache: yes
 
   # Prepare to serve Vue application as static content
   # https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/
@@ -24,7 +25,7 @@
 
   # Authenticate with GitHub Packages
   # https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages
-  - name: Run command
+  - name: Authenticate with GitHub Packages
     become: yes
     command: npm config set //npm.pkg.github.com/:_authToken={{ vault_github_token }}
 
@@ -66,6 +67,6 @@
 
   # Reload nginx configuration
   # https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/
-  - name: Run command
+  - name: Reload nginx configuration
     become: yes
     command: nginx -s reload
