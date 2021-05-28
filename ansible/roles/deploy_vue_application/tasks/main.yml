@@ -1,7 +1,7 @@
 ---
   - name: Install nginx
     become: yes
-    apt:
+    yum:
       name: nginx
       state: present
 
@@ -18,7 +18,7 @@
   # Required for downloading the package.
   - name: Install npm
     become: yes
-    apt:
+    yum:
       name: npm
       state: present
 
