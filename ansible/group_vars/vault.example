@@ -17,7 +17,9 @@ vault_system_user_admin:
 vault_www_user_admin:
 
 vault_registry_url:
+vault_gateway_url:
 vault_gateway_jwt_secret:
+vault_admin_url:
 
 vault_github_user:
 vault_github_token:

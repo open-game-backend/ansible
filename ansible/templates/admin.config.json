@@ -1,3 +1,4 @@
 {
+    "baseUrl": "{{ gateway_url }}",
     "githubClientId": "{{ github_client_id }}"
 }

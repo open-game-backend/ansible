@@ -17,11 +17,11 @@ system_user_admin: "{{ vault_system_user_admin }}"
 www_user_admin: "{{ vault_www_user_admin }}"
 
 registry_url: "{{ vault_registry_url }}"
+gateway_url: "{{ vault_gateway_url }}"
 gateway_jwt_secret: "{{ vault_gateway_jwt_secret }}"
+admin_url: "{{ vault_admin_url }}"
 
 github_user: "{{ vault_github_user }}"
 github_token: "{{ vault_github_token }}"
 github_client_id: "{{ vault_github_client_id }}"
 github_client_secret: "{{ vault_github_client_secret }}"
-
-admin_url: http://localhost:8080
