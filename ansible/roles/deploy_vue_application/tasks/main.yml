@@ -1,4 +1,8 @@
 ---
+  - name: Set up Amazon Linux yum repository for NGINX
+    become: yes
+    command: amazon-linux-extras enable nginx1
+
   - name: Install nginx
     become: yes
     yum:
@@ -16,12 +20,25 @@
       dest: /etc/nginx/nginx.conf
       mode: '0755'
 
+  - name: Set up Amazon Linux yum repository for npm
+    become: yes
+    command: amazon-linux-extras enable epel
+
+  # Required for nodejs repository.
+  - name: Install EPEL
+    become: yes
+    yum:
+      name: epel-release
+      state: present
+      update_cache: yes
+
   # Required for downloading the package.
   - name: Install npm
     become: yes
     yum:
       name: npm
       state: present
+      enablerepo: epel
 
   # Authenticate with GitHub Packages
   # https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages
