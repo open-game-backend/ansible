@@ -14,6 +14,15 @@
     1. ```ansible-galaxy install elastic.beats,7.9.3``` (see https://github.com/elastic/ansible-beats#usage)
     1. ```ansible-galaxy install fedelemantuano.kibana```(see https://github.com/fedelemantuano/ansible-kibana#usage)
 
+# Hosts
+
+Example hosts file for Amazon AWS:
+
+```
+[registry]
+ec2-11-222-33-44.eu-central-1.compute.amazonaws.com ansible_connection=ssh ansible_user=ec2-user
+```
+
 # Deployment
 
 To deploy the Open Game Backend, run the playbook like this:
